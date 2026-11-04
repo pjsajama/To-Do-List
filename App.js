@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-
-// Importar componentes
 import AgregarTarea from './src/components/AgregarTarea';
 import Filtros from './src/components/Filtros';
 import ItemTarea from './src/components/ItemTarea';
 import Contadores from './src/components/Contadores';
 
-// Importar lógica y almacenamiento
 import { 
   agregarTarea, alternarEstadoTarea, eliminarTarea, 
   filtrarTareas, contarTareas, esCodigoSecreto 
@@ -15,13 +12,11 @@ import {
 import { guardarTareasStorage, cargarTareasStorage } from './src/storage/almacenamiento';
 
 export default function App() {
-  // Estados principales de la app
   const [tareas, setTareas] = useState([]);
   const [busqueda, setBusqueda] = useState('');
   const [filtroEstado, setFiltroEstado] = useState('Todas');
   const [mostrarSecreto, setMostrarSecreto] = useState(false);
 
-  // useEffect para cargar las tareas al abrir la app (se ejecuta solo una vez)
   useEffect(() => {
     const cargar = async () => {
       const tareasGuardadas = await cargarTareasStorage();
@@ -30,12 +25,10 @@ export default function App() {
     cargar();
   }, []);
 
-  // useEffect para guardar cada vez que el array de tareas cambie
   useEffect(() => {
     guardarTareasStorage(tareas);
   }, [tareas]);
 
-  // Manejador central para agregar o activar el código secreto
   const manejarAgregar = (texto) => {
     if (esCodigoSecreto(texto)) {
       setMostrarSecreto(!mostrarSecreto); // Activa o desactiva la pantalla secreta
@@ -45,7 +38,6 @@ export default function App() {
     }
   };
 
-  // Preparar los datos procesados para renderizar
   const tareasFiltradas = filtrarTareas(tareas, busqueda, filtroEstado);
   const { pendientes, completadas } = contarTareas(tareas);
 
@@ -55,7 +47,6 @@ export default function App() {
 
       <AgregarTarea onAgregar={manejarAgregar} />
 
-      {/* Renderizado condicional: si se activó el secreto, mostramos info oculta */}
       {mostrarSecreto ? (
         <View style={styles.cajaSecreta}>
           <Text style={styles.textoSecreto}>¡Felicidades! Encontraste el área secreta.</Text>
@@ -72,7 +63,7 @@ export default function App() {
           />
 
           <ScrollView style={styles.lista}>
-            {/* Uso de map() obligatorio para renderizar la lista */}
+            {}
             {tareasFiltradas.map((tarea) => (
               <ItemTarea
                 key={tarea.id}

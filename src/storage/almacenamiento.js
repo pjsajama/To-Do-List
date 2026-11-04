@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Guardar el array de tareas convirtiéndolo a texto (JSON)
 export const guardarTareasStorage = async (tareas) => {
   try {
     const jsonValue = JSON.stringify(tareas);
@@ -10,7 +9,6 @@ export const guardarTareasStorage = async (tareas) => {
   }
 };
 
-// Cargar las tareas y convertirlas de texto a un array de objetos
 export const cargarTareasStorage = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('@tareas');

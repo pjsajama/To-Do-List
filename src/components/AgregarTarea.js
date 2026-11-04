@@ -6,8 +6,7 @@ export default function AgregarTarea({ onAgregar }) {
 
   const manejarEnvio = () => {
     onAgregar(texto);
-    setTexto(''); // Limpiar el input después de enviar
-  };
+    setTexto('');
 
   return (
     <View style={styles.contenedor}>

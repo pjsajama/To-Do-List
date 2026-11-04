@@ -5,7 +5,7 @@ export default function ItemTarea({ tarea, onAlternar, onEliminar }) {
   return (
     <View style={styles.contenedor}>
       <TouchableOpacity style={styles.tareaInfo} onPress={() => onAlternar(tarea.id)}>
-        {/* Renderizado condicional para mostrar el tilde y tachar el texto */}
+        {}
         <Text style={[styles.texto, tarea.completada ? styles.textoCompletado : null]}>
           {tarea.completada ? '✓ ' : 'O '} {tarea.texto}
         </Text>
